@@ -27,21 +27,30 @@ public class HashA {
 
   public static void main(String[] args) throws  IOException {
 
-    // Open a text file for reading (UTF-8)
-    BufferedReader reader = Files.newBufferedReader(Path.of("test.txt"), StandardCharsets.UTF_8);
-
-    String line;
-    int lineNumber = 1;
-
-    // Read the file line by line
-    while ((line = reader.readLine()) != null) {
-      int hash = hash8(line);
-      
-      System.out.println(lineNumber + ": hash=" + hash + " line=" + line);
-      lineNumber++;
+    // Check that a filename was provided
+    if (args.length != 1) {
+      System.err.println("Usage: java HashA <input-file>");
+      return;
     }
 
-    // Always close files when finished
-    reader.close();
+    String filename = args[0];
+
+    // Open a text file for reading (UTF-8)
+    try (BufferedReader reader = 
+              Files.newBufferedReader(Path.of(filename), StandardCharsets.UTF_8)) {
+
+      
+      String line;
+      int lineNumber = 1;
+      
+      // Read the file line by line
+      while ((line = reader.readLine()) != null) {
+        int hash = hash8(line);
+        
+        System.out.printf("%6d hash=%3d line=%s%n", lineNumber, hash, line);
+        lineNumber++;
+        
+      }
+    }
   }
 }
