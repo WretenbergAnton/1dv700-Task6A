@@ -1,3 +1,10 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
+
 public class HashA {
 
   /**
@@ -18,12 +25,21 @@ public class HashA {
     return sum % 256;
   }
 
-  public static void main(String[] args) {
-    // Test the hash function with a fixed example
-   String example = "Hej";
-   int h = hash8(example);
-   
-   System.out.println("Text: " + example);
-   System.out.println("Hash: " + h);
+  public static void main(String[] args) throws  IOException {
+
+    // Open a text file for reading (UTF-8)
+    BufferedReader reader = Files.newBufferedReader(Path.of("test.txt"), StandardCharsets.UTF_8);
+
+    String line;
+    int lineNumber = 1;
+
+    // Read the file line by line
+    while ((line = reader.readLine()) != null) {
+      System.out.println(lineNumber + ": " + line);
+      lineNumber++;
+    }
+
+    // Always close files when finished
+    reader.close();
   }
 }
