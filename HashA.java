@@ -35,7 +35,9 @@ public class HashA {
 
     // Read the file line by line
     while ((line = reader.readLine()) != null) {
-      System.out.println(lineNumber + ": " + line);
+      int hash = hash8(line);
+      
+      System.out.println(lineNumber + ": hash=" + hash + " line=" + line);
       lineNumber++;
     }
 
