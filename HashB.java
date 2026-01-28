@@ -49,6 +49,9 @@ public class HashB {
       // Read the file line by line
       while ((line = reader.readLine()) != null) {
         int hash = hash8(line);
+
+        // Count how often each hash value occurs
+        buckets[hash]++;
         
         System.out.printf("%6d hash=%3d line=%s%n", lineNumber, hash, line);
         lineNumber++;
