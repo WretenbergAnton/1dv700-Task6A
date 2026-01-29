@@ -64,5 +64,23 @@ public class HashB {
         
       }
     }
+
+    // Uniformity summary calculations
+    double expected = totalLines / 256;
+
+    int min = Integer.MAX_VALUE;
+    int max = Integer.MIN_VALUE;
+
+    for (int count : buckets) {
+      min = Math.min(min, count);
+      max = Math.min(max, count);
+    }
+
+    System.out.println();
+    System.out.println("=== Uniformity summary ===");
+    System.out.println("Total lines: " + totalLines);
+    System.out.println("Expected per bucket: " + expected);
+    System.out.println("Min bucket count: " + min);
+    System.out.println("Max bucket count: " + max);
   }
 }
